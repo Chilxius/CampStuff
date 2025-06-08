@@ -1,0 +1,38 @@
+//There are three examples in draw()
+//Un-comment them to see how they work
+
+
+//Anything in here happens
+//once at the beginning
+//and never again
+void setup()
+{
+  size(500,500);
+  background(0);
+}
+
+//Anything here keeps happening
+//until the program ends
+void draw()
+{
+  //Bubbles
+  //circle( random(width), random(height), random(10,50) );
+  
+  //Little Snowman
+  //background(0); //erase everything
+  //fill(255); //white
+  //circle( mouseX, mouseY-35, 30);
+  //circle( mouseX, mouseY, 50 );
+  //circle( mouseX, mouseY+55, 70);
+  
+  //Color Change
+  //if( mouseX > 250 )
+  //{
+  //  fill(200,0,0);
+  //}
+  //if( mouseX < 250 )
+  //{
+  //  fill(0,0,200);
+  //}
+  //circle( mouseX, mouseY, 100 );
+}
