@@ -1,0 +1,38 @@
+//Code Snippets
+
+
+//Goes in Chaser class
+
+  void bounce( Chaser c )
+  {
+    //Directional Bounce
+    if( xPos > c.xPos )
+      xSpd = abs(c.xSpd);
+    else
+      xSpd = -abs(c.xSpd);
+      
+    if( yPos > c.yPos )
+      ySpd = abs(c.ySpd);
+    else
+      ySpd = -abs(c.ySpd);
+      
+    bounceDelay = 10;
+  }
+  
+  boolean touching( Chaser c )
+  {
+    return( dist( c.xPos, c.yPos, xPos, yPos ) < (c.size+size)/2 );
+  }  
+
+
+//Goes in handleChasers()
+
+  //Check for collision
+  for(int i = 0; i < currentChasers; i++)
+    if( chasers[i].bounceDelay<=0 )
+    for(int j = i+1; j < currentChasers; j++)
+      if( chasers[i].touching(chasers[j]) )
+      {
+        chasers[j].bounce(chasers[i]);
+        chasers[i].bounce(chasers[j]);
+      }
