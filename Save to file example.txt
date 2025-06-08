@@ -1,0 +1,69 @@
+//Saving to file
+//Clicking UP will increase number
+//Clicking DOWN will decrease number
+//Hitting any key will save the number to file
+
+int number = 0;
+
+void setup()
+{
+  size(700,700);
+  
+  textSize(100);
+  textAlign(CENTER);
+  
+  loadData();
+}
+
+void draw()
+{
+  background(0);
+  
+  fill(255);
+  
+  text( number, 350, 350 );
+}
+
+void keyPressed()
+{
+  if( keyCode == UP )
+    number++;
+  if( keyCode == DOWN )
+    number--;
+  
+  saveData();
+}
+
+void saveData()
+{
+  try
+  {
+    //use a PrintWriter to send your information to a chosen file
+    PrintWriter pw = createWriter( "save.txt" );
+    pw.println( number ); // <- This adds the data to be written to the file
+    
+    pw.flush(); //Writes the remaining data to the file
+    pw.close(); //Finishes the file
+  }
+  catch(Exception e)
+  {
+    println("SOMETHING WENT WRONG");
+  }
+}
+
+void loadData()
+{
+  try
+  {
+    //use the loadStrings() method to pull the lines of your save file into a String array
+    String [] data = loadStrings("save.txt");
+    number = Integer.parseInt(data[0]); // Grabbs the first (and only) line from the file
+  }
+  catch(Exception e)
+  {
+    println("SOMETHING WENT WRONG");
+    
+    //Loads default data
+    number = 0;
+  }
+}
