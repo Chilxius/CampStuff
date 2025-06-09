@@ -1,0 +1,49 @@
+class Chaser
+{
+  float xPos, yPos;
+  float xSpd, ySpd;
+  float speed;
+
+  int type;
+  int size;
+
+  int bounceDelay;
+
+  float tauntX, tauntY;
+  int tauntDelay;
+  int currentTaunt;
+
+  //Constructor
+  Chaser()
+  {
+    xPos = random(width);
+    yPos = 2000;
+
+    type = int( random(3) );
+
+    if( type == 0 ) speed = 0.5;
+    if( type == 1 ) speed = 0.3;
+    if( type == 2 ) speed = 0.1;
+    
+    size = 50 + type*50;
+  }
+  
+  void moveAndDraw()
+  {
+    //Speed up/down
+    if( mouseX > xPos ) xSpd += speed;
+    if( mouseX < xPos ) xSpd -= speed;
+    if( mouseY > yPos ) ySpd += speed;
+    if( mouseY < yPos ) ySpd -= speed;
+    
+    //Friction
+    xSpd *= 0.98;
+    ySpd *= 0.98;
+    
+    //Move
+    xPos += xSpd;
+    yPos += ySpd;
+    
+    image( pic, xPos, yPos );
+  }
+}
