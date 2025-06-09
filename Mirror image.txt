@@ -1,0 +1,31 @@
+//Mirror image
+//*Assumes you have loaded the fish.png image*
+
+//Mirroring is difficult. It might be easier
+//to load two different images and switch
+//between them.
+
+PImage pic;
+
+void setup()
+{
+  size(800,800);
+  imageMode(CENTER);
+  
+  pic = loadImage("fish.png");
+}
+
+void draw()
+{
+  background(0);
+  
+  image(pic,mouseX,mouseY);  //Original image
+  
+  push();  //Changes after this are un-changed after using pop()
+  
+  translate( mouseX, mouseY ); //Move the origin (0,0) to the mouse's position
+  scale(-1,1);//flip on X axis
+  image(pic,0,0); //Draw flipped image on new origin
+  
+  pop(); //Un-does translate and scale
+}
