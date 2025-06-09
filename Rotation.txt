@@ -1,0 +1,41 @@
+//Rotation
+//Making an object rotate is
+//tricky. The rotate command
+//rotates the whole window.
+//So, we must center the window
+//where we want to draw, rotate
+//the canvas, draw the object,
+//then un-rotate.
+
+//You can also use PI for rotation,
+//much like with the arc() command.
+
+float rotation = 0;
+
+void setup()
+{
+  size(900,900);
+  rectMode(CENTER);
+}
+
+void draw()
+{
+  //Fading background
+  fill(0,5);
+  rect(width/2,height/2,width,height);
+  
+  push(); //Any changes after this will be un-changed when we use pop()
+  
+  translate(width/2,height/2); //Change the 0,0 point to the the middle of the screen
+  
+  rotate( rotation ); //Rotates the canvas around our new 0,0 point
+  
+  strokeWeight(0.5);
+  stroke(255);
+  fill((200+rotation*5)%255,(100+rotation*10)%255,(rotation*7)%255);
+  rect(0,0,800,50); //Draws a long rectangle centered on the new 0,0
+  
+  pop(); //Un-does the translation, strokeWeight, stroke, fill, and rotation
+  
+  rotation += 0.01; //Changes the rotation
+}
