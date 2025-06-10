@@ -1,0 +1,30 @@
+//Using images
+
+//Create a variable to hold the image
+PImage pic;
+
+void setup()
+{
+  size(500,500);
+  
+  //By default, images draw from the top corner
+  //like rectangles. This command makes them draw
+  //from the center.
+  imageMode(CENTER);
+  
+  //Load the image (this must be done in setup())
+  //Make sure the file name matches EXACTLY
+  pic = loadImage("image.png");
+  
+  //Change the image's size. If a zero is used for
+  //the width or height, it will adjust so that it
+  //stays proportional. (A 10x5 image resized to (20,0)
+  //would become 20x10)
+  pic.resize(100,0);
+}
+
+void draw()
+{
+  //Displays the image at the given location
+  image( pic, 250, 250 );
+}
