@@ -48,6 +48,22 @@
     if( dist( chasers[i].xPos, chasers[i].yPos, mouseX, mouseY ) < 75 )
       health--;
 
+//Goes in Chaser -> moveAndDraw()
+    //Draw taunt
+    fill(150,tauntDelay*3-20);
+    text(taunts[currentTaunt],tauntX,tauntY);
+    if( !gameOver && tauntDelay <= 0 )
+    {
+      tauntDelay = int(random(50,200));
+      currentTaunt = int(random(10));
+      tauntX = xPos;
+      tauntY = yPos;
+    }
+
+
+
+
+
 //For Breakout
 //Goes in createBricks()
 
