@@ -1,0 +1,20 @@
+ //bounce off ceiling/floor
+  if( ballY < 25 || ballY > height-25 )
+  {
+    switchY = -switchY;
+    testSound.play();
+  }
+  
+  //left paddle
+  if( ballX-25 < 25 && ballY > leftY-100 && ballY < leftY+100 )
+  {
+    switchX = 1;
+    testSound.play();
+  }
+  
+  //right paddle
+  if( ballX+25 > width-25 && ballY > rightY-100 && ballY < rightY+100 )
+  {
+    switchX = -1;
+    testSound.play();
+  }
