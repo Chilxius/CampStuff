@@ -61,7 +61,12 @@
     }
 
 
-
+//For drawing a "fallen over" image
+push();
+translate(lastX,lastY);
+rotate(HALF_PI); //or PI*1.5
+image(deadPic,0,0);
+pop();
 
 
 //For Breakout
