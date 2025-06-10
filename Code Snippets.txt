@@ -17,7 +17,13 @@ void checkHits()
         if( e.gotHit(s) )
         {
           s.offScreen = true;
-          e.health--;
+          e.health-=s.power;
+          if( s.type == 2 )
+          {
+            e.xSpd*=0.85;
+            e.ySpd*=0.85;
+            e.frozen = true;
+          }
           if( e.health <= 0 )
             checkNextDrop(e);
         }
