@@ -37,6 +37,17 @@
         chasers[i].bounce(chasers[j]);
       }
 
+//Goes in handlePlayer()
+
+  //spawns new chaser
+  if( currentChasers < chaserCount && score/1000 >= currentChasers )
+    currentChasers++;
+
+  //Detects damage
+  for(int i = 0; i < currentChasers; i++)
+    if( dist( chasers[i].xPos, chasers[i].yPos, mouseX, mouseY ) < 75 )
+      health--;
+
 //For Breakout
 //Goes in createBricks()
 
