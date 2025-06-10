@@ -1,0 +1,16 @@
+void handleChasers()
+{
+  //Move and draw them all
+  for( int i = 0; i < currentChasers; i++ )
+    chasers[i].moveAndDraw();
+    
+  //Check for collision
+  for(int i = 0; i < currentChasers; i++)
+    if( chasers[i].bounceDelay<=0 )
+    for(int j = i+1; j < currentChasers; j++)
+      if( chasers[i].touching(chasers[j]) )
+      {
+        chasers[j].bounce(chasers[i]);
+        chasers[i].bounce(chasers[j]);
+      }
+}
