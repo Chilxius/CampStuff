@@ -39,6 +39,10 @@ void cleanUp()
 }
 ***********************
 
+For changing Fonts: (put in setup())
+  //Change Font
+  PFont font = createFont( "Clin Fiaro.ttf", 32 );  //Drag this font in like a picture
+  textFont(font);
 
 //Goes in Chaser class
 
