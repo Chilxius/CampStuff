@@ -17,7 +17,7 @@ void mousePressed()
 
 //Put this in both Enemy and Player:
   
-  boolean gotHit( Shot s )
+  boolean gotHit( Laser s )
   {
     return dist( xPos, yPos, s.xPos, s.yPos ) < size/2;
   }
@@ -25,7 +25,7 @@ void mousePressed()
 //Put this in the main code:
 void checkHits()
 {
-  for( Shot s: shots )
+  for( Laser s: lasers )
   { 
     if( s.bad && player.gotHit(s) )
     {
@@ -44,18 +44,18 @@ void checkHits()
 
 void cleanUp()
 {
-  for( int i = 0; i < shots.size(); i++ )
-    if( shots.get(i).offScreen )
-      shots.remove(i);
+  for( int i = 0; i < lasers.size(); i++ )
+    if( lasers.get(i).offScreen )
+      lasers.remove(i);
   for( int i = 0; i < enemies.size(); i++ )
     if( enemies.get(i).health <= 0 )
     {
-      explosions.add( new Explosion( enemies.get(i) ) );
+      booms.add( new Explosion( enemies.get(i) ) );
       enemies.remove(i);
     }
-  for( int i = 0; i < explosions.size(); i++ )
-    if( explosions.get(i).timer <= 0 )
-      explosions.remove(i);
+  for( int i = 0; i < booms.size(); i++ )
+    if( booms.get(i).timer <= 0 )
+      booms.remove(i);
 }
 ***********************
 
