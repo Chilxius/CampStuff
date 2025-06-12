@@ -14,13 +14,21 @@ void mousePressed()
 
 //For Flier Game:
 *******************
+
+//Put this in both Enemy and Player:
+  
+  boolean gotHit( Shot s )
+  {
+    return dist( xPos, yPos, s.xPos, s.yPos ) < size/2;
+  }
+
+//Put this in the main code:
 void checkHits()
 {
   for( Shot s: shots )
   { 
     if( s.bad && player.gotHit(s) )
     {
-      //player.upgrade++;
       s.offScreen = true;
       continue;
     }
