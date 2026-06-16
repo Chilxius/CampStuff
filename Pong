@@ -1,0 +1,105 @@
+//Pong
+
+//Ball Variables
+float ballX = 100, ballY = 100;
+float xSpd = -7.0, ySpd = 6.1;
+PImage ballPic;
+
+//Paddle Variables
+float leftX, leftY;
+float rightX, rightY;
+float paddleSize = 300;
+boolean leftUp, leftDn, rightUp, rightDn;
+
+//Score Variables
+int leftScore, rightScore;
+
+void setup()
+{
+  fullScreen();
+  imageMode(CENTER);
+  textAlign(CENTER);
+  rectMode(CENTER);
+  
+  //Load images
+  ballPic = loadImage("phone.png");
+  ballPic.resize(100,0);
+  
+  //Paddle Positions
+  leftX = 75;
+  leftY = height/2;
+  rightX = width - 75;
+  rightY = height/2;
+}
+void draw()
+{
+  //Background
+  fill(0,0,0,20);
+  rect(width/2,height/2,width,height);
+  
+  //Move and draw 'ball'
+  ballX += xSpd;
+  ballY += ySpd;
+  image( ballPic, ballX, ballY );
+  if( ballX < -50 )
+  {
+    rightScore++;
+    ballX = width/2;
+    ballY = height/2;
+    xSpd = -xSpd;
+  }
+  if( ballX > width+50 )
+  {
+    leftScore++;
+    ballX = width/2;
+    ballY = height/2;
+    xSpd = -xSpd;
+  }
+  if( ballY < 50  ||  ballY > height-50 )
+    ySpd = -ySpd;
+  
+  //Draw Paddles
+  fill(255);
+  rect(leftX, leftY, 50, paddleSize);
+  rect(rightX,rightY,50, paddleSize);
+  
+  //Move Paddles
+  if( leftUp ) leftY -= 5;
+  if( leftDn ) leftY += 5;
+  if( rightUp ) rightY -= 5;
+  if( rightDn ) rightY += 5;
+  
+  //Paddle Bounce
+  //Left Paddle
+  if( ballX < leftX+50
+   && ballY > leftY-paddleSize/2
+   && ballY < leftY+paddleSize/2 )
+     xSpd = -xSpd;
+  //Right Paddle
+  if( ballX > rightX-50
+   && ballY > rightY-paddleSize/2
+   && ballY < rightY+paddleSize/2 )
+     xSpd = -xSpd;
+     
+  //Scores
+  stroke(255);
+  strokeWeight(5);
+  line( width/2, 25, width/2, height-25 );
+  textSize(100);
+  text( leftScore, width/2-100, 100 );
+  text( rightScore, width/2+100, 100 );
+}
+void keyPressed()
+{
+  if( key == 'w' ) leftUp  = true;
+  if( key == 's' ) leftDn  = true;
+  if( key == 'p' ) rightUp = true;
+  if( key == 'l' ) rightDn = true;
+}
+void keyReleased()
+{
+  if( key == 'w' ) leftUp  = false;
+  if( key == 's' ) leftDn  = false;
+  if( key == 'p' ) rightUp = false;
+  if( key == 'l' ) rightDn = false;
+}
