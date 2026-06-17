@@ -1,11 +1,11 @@
 void cleanUp()
 {
   for( int i = 0; i < enemies.size(); i++ )
-    if( enemies.get(i).dead )
+    if( enemies.get(i).dead || enemies.get(i).yPos > height+100 )
       enemies.remove(i);
       
   for( int i = 0; i < lasers.size(); i++ )
-    if( lasers.get(i).dead )
+    if( lasers.get(i).dead || lasers.get(i).yPos < -100 )
       lasers.remove(i);
       
   for( int i = 0; i < explosions.size(); i++ )
