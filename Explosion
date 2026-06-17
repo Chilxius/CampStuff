@@ -1,0 +1,24 @@
+class Explosion
+{
+  float xPos, yPos;
+  int timer;
+  
+  Explosion( Enemy e )
+  {
+    xPos = e.xPos;
+    yPos = e.yPos;
+    timer = 200;
+  }
+  
+  void update()
+  {
+    timer-=3;
+  }
+  
+  void display()
+  {
+    noStroke();
+    fill(255,0,0,timer);
+    circle(xPos,yPos,200-timer);
+  }
+}
