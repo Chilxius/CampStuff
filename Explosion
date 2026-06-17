@@ -2,12 +2,27 @@ class Explosion
 {
   float xPos, yPos;
   int timer;
+  int textChoice;
+  String [] text = new String[10];
   
   Explosion( Enemy e )
   {
     xPos = e.xPos;
     yPos = e.yPos;
     timer = 200;
+    boomSound.play();
+    textChoice = int(random(text.length));
+    
+    text[0] = "Ouch";
+    text[1] = "The pain.";
+    text[2] = "Noooo...";
+    text[3] = "My cabbages";
+    text[4] = "My leg!";
+    text[5] = "You dirty rat";
+    text[6] = "That hurt";
+    text[7] = "My face";
+    text[8] = "Why?";
+    text[9] = "I just wanted to be friends";
   }
   
   void update()
@@ -20,5 +35,8 @@ class Explosion
     noStroke();
     fill(255,0,0,timer);
     circle(xPos,yPos,200-timer);
+    fill(255,timer*2);
+    textSize(30);
+    text( text[textChoice], xPos-50, yPos-50);
   }
 }
