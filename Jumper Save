@@ -1,0 +1,27 @@
+void saveData()
+{
+  try
+  {
+    PrintWriter pw = createWriter( "save.txt" );
+    pw.println( highScore ); // <- This adds the data to be written to the file
+    pw.flush(); //Writes the remaining data to the file
+    pw.close(); //Finishes the file
+  }
+  catch(Exception e)
+  {
+    println("SOMETHING WENT WRONG");
+  }
+}
+void loadData()
+{
+  try
+  {
+    String [] data = loadStrings("save.txt");
+    highScore = Integer.parseInt(data[0]); // Grabbs the first (and only) line from the file
+  }
+  catch(Exception e)
+  {
+    println("SOMETHING WENT WRONG");
+    highScore = 0;
+  }
+}
